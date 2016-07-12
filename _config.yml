@@ -1,30 +1,52 @@
-fancybox: true ## If you want to use fancybox please set the value to true.
-duoshuo: ## Your duoshuo_shortname, e.g. username
-disqus: ## Your disqus_shortname, e.g. username
-google_search: true ## Use Google search, true/false.
-baidu_search: ## Use Baidu search, true/false.
-swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
-tinysou: ## Your tinysou_key, e.g. 4ac092ad8d749fdc6293
-self_search: ## Use a jQuery-based local search engine, true/false.
-google_analytics: ## Your Google Analytics tracking id, e.g. UA-42425684-2
-baidu_analytics: ## Your Baidu Analytics tracking id, e.g. 8006843039519956000
-show_category_count: false ## If you want to show the count of categories in the sidebar widget please set the value to true.
+fancybox: true
+duoshuo: iou2much
+#duoshuo: false
+#disqus: ## Your disqus_shortname, e.g. haomwei
+#google_search: ## Use Google search, true/false
+#baidu_search: ## Use Baidu search, true/false
+swiftype: WwxGua3vYy9n-MTGjPSp
+#swiftype: false
+#tinysou: ## Your tinysou_key, e.g. 4ac092ad8d749fdc6293
+#google_analytics: ## Your Google Analytics tracking id, e.g. UA-42425684-2
+baidu_analytics: 4492c5298a95d05e162aa9bd5f8b145b
+#baidu_analytics: false
 shareto: true ## If you want to use the share button please set the value to true.
 busuanzi: true ## If you want to use Busuanzi page views please set the value to true.
 
 menu:
   - page: home
-    directory: .
-    icon: fa-home
+    directory: /
+    icon: icon-home
+  - page: categories
+    directory: categories/
+    icon: icon-tree
+  - page: playground
+    directory: http://notebook.debug.life/tree
+    icon: icon-home
   - page: archive
     directory: archives/
-    icon: fa-archive
+    icon: icon-book
   - page: about
     directory: about/
-    icon: fa-user
+    icon: icon-user
   - page: rss
-    directory: atom.xml
-    icon: fa-rss
+    directory: subscribe/
+    icon: icon-rss
+links:
+  - title: Notebook
+    url: http://notebook.debug.life/tree
+  - title: Jupyter
+    url: http://jupyter.debug.life/
+  - title: Hexo大牛
+    url: http://www.lancezhange.com/
+  - title: site-name3
+    url: http://www.example3.com/
+
+#highlight:
+#  enable: true
+#  auto_detect: true
+#  line_number: true
+#  tab_replace:
 
 widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts, rencent_comments and links.
   - search
@@ -34,27 +56,6 @@ widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts
   - recent_comments
   - links
 
-links:
-  - title: site-name1
-    url: http://www.example1.com/
-  - title: site-name2
-    url: http://www.example2.com/
-  - title: site-name3
-    url: http://www.example3.com/
-
-timeline:
-  - num: 1
-    word: 2014/06/12-Start
-  - num: 2
-    word: 2014/11/29-XXX
-  - num: 3
-    word: 2015/02/18-DDD
-  - num: 4
-    word: More
-
 # Static files
 js: js
 css: css
-
-# Theme version
-version: 0.0.0
