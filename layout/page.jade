@@ -1,11 +1,17 @@
-extends base
-block title
-  title= page.title + ' | ' + config.title
+extends content-base
+
 block content
-  .post
-    h1.post-title= page.title
-    .post-content
-      != page.content
-  if page.comments
-    include _partial/comments
+  .pure-u-1.pure-u-md-3-4: .content_container(ng-controller="bodyCtrl")
+    .post
+      h1.post-title(ng-bind="post_title")= page.title
+      .post-content
+        != page.content
+    if page.comments
+      include _partial/comments
+  .pure-u-1-4: #sidebar
+    each item in theme.widgets
+      != partial('_widget/' + item + '.jade')
+  .pure-u-1.pure-u-md-4-4
+    != partial('_partial/footer.jade')
+
 

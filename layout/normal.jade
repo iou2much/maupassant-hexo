@@ -1,0 +1,14 @@
+extends normal-base
+block title
+  title= page.title + ' | ' + config.title
+
+block content
+  .pure-u-1.pure-u-md-24-24: .content_container
+    .post
+      h1.post-title(ng-bind="post_title")= page.title
+      .post-content
+        != page.content
+  .pure-u-1.pure-u-md-24-24
+    != partial('_partial/footer.jade')
+
+

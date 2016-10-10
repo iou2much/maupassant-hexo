@@ -1,0 +1,334 @@
+@import url(../bower_components/bootstrap/dist/css/bootstrap.min.css);
+
+#selectedText{
+    background: rgba(112, 214, 101, 0.58);
+}
+.animate-show {
+    line-height: 20px;
+    opacity: 1;
+    padding: 10px;
+    border: 1px solid black;
+    background: white;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+    transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    padding: 0 10px;
+}
+
+.check-element {
+    padding: 10px;
+    border: 1px solid black;
+    background: white;
+}
+/*
+.page        {
+    bottom:0;
+    padding-top:200px;
+    position:absolute;
+    text-align:center;
+    top:0;
+    width:100%;
+}
+
+.page h1     { font-size:60px; }
+.page a     { margin-top:50px; }
+*/
+/* PAGES (specific colors for each page)
+=============================================================================
+.page-home         { background:#00D0BC; color:#00907c; }
+.page-notebook     { background:#E59400; color:#a55400; }
+.page-archive      { background:#ffa6bb; color:#9e0000; }
+*/
+
+/* ANIMATIONS
+============================================================================= */
+
+.page.ng-leave 	{ z-index:9999; }
+.page.ng-enter 	{ z-index:8888; }
+
+/* page specific animations ------------------------ */
+
+/* home -------------------------- */
+/*
+.page.ng-leave         {
+    -webkit-transform-origin: 0% 0%;
+    -webkit-animation: rotateFall 1s both ease-in;
+    -moz-transform-origin: 0% 0%;
+    -moz-animation: rotateFall 1s both ease-in;
+    transform-origin: 0% 0%;
+    animation: rotateFall 1s both ease-in;
+}
+*/
+.page.ng-enter 		{
+    -webkit-animation:slideInUp 0.5s both ease-in;
+    -moz-animation:slideInUp 0.5s both ease-in;
+    animation:slideInUp 0.5s both ease-in;
+}
+
+/* about ------------------------ */
+.page-notebook.ng-leave        {
+    -webkit-animation:slideOutLeft 0.5s both ease-in;
+    -moz-animation:slideOutLeft 0.5s both ease-in;
+    animation:slideOutLeft 0.5s both ease-in;
+}
+.page-notebook.ng-enter 		{
+    -webkit-animation:slideInRight 0.5s both ease-in;
+    -moz-animation:slideInRight 0.5s both ease-in;
+    animation:slideInRight 0.5s both ease-in;
+}
+
+/* contact ---------------------- */
+.page-contact.ng-leave      {
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation: rotateOutNewspaper .5s both ease-in;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation: rotateOutNewspaper .5s both ease-in;
+    transform-origin: 50% 50%;
+    animation: rotateOutNewspaper .5s both ease-in;
+}
+.page-contact.ng-enter 		{
+    -webkit-animation:slideInUp 0.5s both ease-in;
+    -moz-animation:slideInUp 0.5s both ease-in;
+    animation:slideInUp 0.5s both ease-in;
+}
+
+/* rotate and fall */
+@-webkit-keyframes rotateFall {
+    0% { -webkit-transform: rotateZ(0deg); }
+    20% { -webkit-transform: rotateZ(10deg); -webkit-animation-timing-function: ease-out; }
+    40% { -webkit-transform: rotateZ(17deg); }
+    60% { -webkit-transform: rotateZ(16deg); }
+    100% { -webkit-transform: translateY(100%) rotateZ(17deg); }
+}
+@-moz-keyframes rotateFall {
+    0% { -moz-transform: rotateZ(0deg); }
+    20% { -moz-transform: rotateZ(10deg); -moz-animation-timing-function: ease-out; }
+    40% { -moz-transform: rotateZ(17deg); }
+    60% { -moz-transform: rotateZ(16deg); }
+    100% { -moz-transform: translateY(100%) rotateZ(17deg); }
+}
+@keyframes rotateFall {
+    0% { transform: rotateZ(0deg); }
+    20% { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+    40% { transform: rotateZ(17deg); }
+    60% { transform: rotateZ(16deg); }
+    100% { transform: translateY(100%) rotateZ(17deg); }
+}
+
+/* scale up */
+@keyframes scaleUp {
+    from 		{ opacity: 0.3; transform: scale(0.8); }
+}
+@-moz-keyframes scaleUp {
+    from 		{ opacity: 0.3; -moz-transform: scale(0.8); }
+}
+@-webkit-keyframes scaleUp {
+    from 		{ opacity: 0.3; -webkit-transform: scale(0.8); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from 	{ transform:translateX(100%); }
+    to 		{ transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from 	{ -moz-transform:translateX(100%); }
+    to 		{ -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from 	{ -webkit-transform:translateX(100%); }
+    to 		{ -webkit-transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+    from 	{ transform:translateY(100%); }
+    to 		{ transform: translateY(0); }
+}
+@-moz-keyframes slideInUp {
+    from 	{ -moz-transform:translateY(100%); }
+    to 		{ -moz-transform: translateY(0); }
+}
+@-webkit-keyframes slideInUp {
+    from 	{ -webkit-transform:translateY(100%); }
+    to 		{ -webkit-transform: translateY(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+    to 		{ transform: translateX(-100%); }
+}
+@-moz-keyframes slideOutLeft {
+    to 		{ -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes slideOutLeft {
+    to 		{ -webkit-transform: translateX(-100%); }
+}
+
+/* rotate out newspaper */
+@-webkit-keyframes rotateOutNewspaper {
+    to { -webkit-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+@-moz-keyframes rotateOutNewspaper {
+    to { -moz-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+@keyframes rotateOutNewspaper {
+    to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+
+/*
+.user_info.ng-leave {
+    animation: my_fade_animation 0.5s linear;
+    -webkit-animation: my_fade_animation 0.5s linear;
+}
+
+@keyframes my_fade_animation {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+@-webkit-keyframes my_fade_animation {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+.user_info.ng-enter{
+    -webkit-animation:slideInUp 0.5s both ease-in;
+    -moz-animation:slideInUp 0.5s both ease-in;
+    animation:slideInUp 0.5s both ease-in;
+}
+*/
+body{
+    height: auto;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+a:focus, a:hover{
+    text-decoration: none;
+}
+#header{
+    padding:15px 0 0;
+}
+#header .site-name #logo{
+    font:bold 30px/1.1 "Times New Roman", Georgia, Times, sans-serif;
+}
+.md-button{
+    margin: 0;
+}
+.vis-hidden{
+    display: none;
+}
+#header .site-name{
+    text-align: center;
+    margin-bottom:10px
+}
+#header .site-name #logo{
+    margin-right:16px;
+}
+#header #nav-menu{
+    right:auto;
+    margin:0;
+    position: relative;
+    max-height: 30px;
+}
+#header #nav-menu .nav-menu2{
+    background: white;
+}
+.nav-menu2 .md-button {
+    font-weight: normal;
+}
+#terminal_handler {
+    background: #666;
+}
+#terminal_handler:hover{
+    cursor: move;
+}
+.close_terminal_btn{
+    color: white;
+    font-size: 10px;
+    padding: 1px 0;
+    margin: auto 6px;
+    cursor: pointer;
+    width:40px;
+}
+
+.demo-md-panel {
+    min-height: 500px;
+}
+.demo-dialog-example {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+    0 13px 19px 2px rgba(0, 0, 0, 0.14),
+    0 5px 24px 4px rgba(0, 0, 0, 0.12);
+    width: 500px;
+}
+.demo-dialog-content {
+    padding: 0 15px;
+    width: 100%;
+    overflow: scroll;
+    max-height: 300px;
+}
+.demo-dialog-button {
+    width: 100%;
+}
+.demo-menu-example {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+    0 13px 19px 2px rgba(0, 0, 0, 0.14),
+    0 5px 24px 4px rgba(0, 0, 0, 0.12);
+    width: 256px;
+}
+.demo-menu-item {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 48px;
+    padding: 0 16px;
+    position: relative;
+    transition: background 0.15s linear;
+    width: auto;
+}
+.demo-menu-item:hover,
+.demo-menu-item:focus {
+    background-color: rgb(238, 238, 238);
+}
+.demo-menu-item.selected {
+    color: rgb(16, 108, 200);
+}
+.md-panel .content_container{
+    padding: 0;
+}
+.md-panel .content_container .post h1{
+    text-align: center;
+}
+.md-panel #footer{
+    display: none;
+}
+.md-panel .pure-u-1{
+   min-height: 0px;
+}
+.mm-panel{
+    width:90%;
+    border-radius: 4px;
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+    0 13px 19px 2px rgba(0, 0, 0, 0.14),
+    0 5px 24px 4px rgba(0, 0, 0, 0.12);
+}
+#jsmind_container{
+    background: white;
+}
+.content_container{
+    min-height:600px;
+}
+jmexpander{
+    line-height: 8px;
+}

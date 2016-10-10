@@ -1,10 +1,12 @@
+version: 0.1
 fancybox: true
-duoshuo: iou2much
-#duoshuo: false
+#duoshuo: iou2much
+duoshuo: false
 #disqus: ## Your disqus_shortname, e.g. haomwei
 #google_search: ## Use Google search, true/false
 #baidu_search: ## Use Baidu search, true/false
-swiftype: WwxGua3vYy9n-MTGjPSp
+#swiftype: WwxGua3vYy9n-MTGjPSp
+swiftype: false
 #swiftype: false
 #tinysou: ## Your tinysou_key, e.g. 4ac092ad8d749fdc6293
 #google_analytics: ## Your Google Analytics tracking id, e.g. UA-42425684-2
@@ -17,21 +19,21 @@ menu:
   - page: home
     directory: /
     icon: icon-home
-  - page: categories
-    directory: categories/
+  - page: 技能树
+    directory: mindmap/
     icon: icon-tree
-  - page: playground
-    directory: http://notebook.debug.life/tree
+  - page: Notebook
+    directory: notebook/
     icon: icon-home
   - page: archive
     directory: archives/
     icon: icon-book
-  - page: about
-    directory: about/
-    icon: icon-user
-  - page: rss
-    directory: subscribe/
-    icon: icon-rss
+#  - page: about
+#    directory: about/
+#    icon: icon-user
+#  - page: rss
+#    directory: subscribe/
+#    icon: icon-rss
 links:
   - title: Notebook
     url: http://notebook.debug.life/tree

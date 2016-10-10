@@ -1,4 +1,4 @@
-extends base
+extends content-base
 
 block title
   if page.category
@@ -7,18 +7,26 @@ block title
      title= page.tag + ' | ' + config.title
   if page.archive
      title= __('archive') + ' | ' + config.title
+
 block content
-  if page.category || page.tag
-      h1.label-title=  __('reading_label', page.category || page.tag)
-  .post
-    .post-archive
-        //Use lodash to classify posts. See https://lodash.com/docs#groupBy
-        each posts, year in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
-          h2= -year
-          ul.listing
-            for post in posts
-              li
-                span.date= post.date.format('YYYY/MM/DD')
-                a(href=url_for(post.path), title=post.title)
-                  +title(post)
-  include _partial/paginator.jade
+  .pure-u-1.pure-u-md-3-4: .content_container(ng-controller="bodyCtrl")
+    if page.category || page.tag
+        h1.label-title=  __('reading_label', page.category || page.tag)
+    .post
+        .post-archive
+            //Use lodash to classify posts. See https://lodash.com/docs#groupBy
+            each posts, year in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
+                h2= -year
+                ul.listing
+                    for post in posts
+                        li
+                            span.date= post.date.format('YYYY/MM/DD')
+                            a(href=url_for(post.path), title=post.title)
+                                +title(post)
+    include _partial/paginator.jade
+  .pure-u-1-4: #sidebar
+    each item in theme.widgets
+      != partial('_widget/' + item + '.jade')
+  .pure-u-1.pure-u-md-4-4
+    != partial('_partial/footer.jade')
+

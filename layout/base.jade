@@ -14,7 +14,7 @@ if config.feed
       - var feed_type='application/atom+xml'
 
 doctype html
-html(lang='#{config.language}')
+html(lang='#{config.language}', data-ng-app="BlogApp")
   head
     meta(http-equiv='content-type', content='text/html; charset=utf-8')
     meta(content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0', name='viewport')
@@ -22,30 +22,66 @@ html(lang='#{config.language}')
     meta(content='black-translucent', name='apple-mobile-web-app-status-bar-style')
     meta(content='telephone=no', name='format-detection')
     meta(name='description', content=config.description)
+    base(href="/")
     block title
     link(rel='stylesheet', type='text/css', href=url_for(theme.css) + '/style.css' + '?v=' + theme.version)
+    link(rel='stylesheet', type='text/css', href=url_for(theme.css) + '/../bower_components/bootstrap/dist/css/bootstrap.min.css' + '?v=' + theme.version)
+
     link(rel='stylesheet', type='text/css', href='//cdn.bootcss.com/normalize/4.2.0/normalize.min.css')
     link(rel='stylesheet', type='text/css', href='//cdn.bootcss.com/pure/0.6.0/pure-min.css')
     link(rel='stylesheet', type='text/css', href='//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css')
     link(rel='stylesheet', href='//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css')
-    script(type='text/javascript', src='//cdn.bootcss.com/jquery/3.0.0/jquery.min.js')
     link(rel='Shortcut Icon', type='image/x-icon', href=url_for('favicon.ico'))
     link(rel='apple-touch-icon', href=url_for('apple-touch-icon.png'))
     link(rel='apple-touch-icon-precomposed', href=url_for('apple-touch-icon.png'))
+    link(rel='stylesheet', type='text/css', href='../bower_components/angular-tooltips/dist/angular-tooltips.min.css' + '?v=' + theme.version)
+    link(rel='stylesheet', type='text/css', href='../bower_components/angular-carousel/dist/angular-carousel.min.css' + '?v=' + theme.version)
+    link(rel='stylesheet', type='text/css', href=url_for(theme.css) + '/../bower_components/angular-material/angular-material.css' + '?v=' + theme.version)
+    link(rel='stylesheet', type='text/css', href=url_for(theme.css) + '/../bower_components/angular-resizable/angular-resizable.min.css' + '?v=' + theme.version)
+    link(rel='stylesheet', type='text/css', href=url_for(theme.css) + '/../bower_components/jsmind/css/jsmind.css' + '?v=' + theme.version)
+    link(rel='stylesheet', type='text/css', href=url_for(theme.css) + '/custom.css' + '?v=' + theme.version)
+
     if config.feed
       link(rel='alternate', type=feed_type, href=url_for(config.feed.path))
 
+
   body: .body_container
-    #header
+    #header(ng-controller="headerCtrl")
       .site-name
         h1.hidden= current_title
         a#logo(href=url_for('.'))= config.title
-        p.description= config.subtitle
+        span.description= config.subtitle
       #nav-menu
-        - for (var i in theme.menu)
-          +a_with_current(theme.menu[i].directory, __(theme.menu[i].page), theme.menu[i].icon)
+        div.nav-menu2
+          - for (var i in theme.menu)
+            +a_with_current(theme.menu[i].directory, __(theme.menu[i].page), theme.menu[i].icon, theme.menu[i].class)
+          a(href='javascript:void(0)',ng-cloak="",ng-click="connect()")
+            i(class='fa') 打开终端
+          a(href='https://api.debug.life/github/github_login/', class='login_btn user_info',ng-if='!is_login',ng-cloak="")
+            i(class='fa') Github 登录
+          md-menu(md-position-mode="target-right target",ng-cloak="",ng-show="is_login")
+            md-button(aria-label="Open demo menu", ng-click="$mdOpenMenu($event)")
+              a(class='user_info',ng-if='is_login',ng-bind='username',href="#",ng-show="is_login")
+            md-menu-content(width="2")
+              md-menu-item
+                md-button(ng-click="")
+                  div(layout="row", flex="")
+                    a(href="/playground") 我的终端
+              md-menu-item
+                md-button(ng-click="logout()")
+                  div(layout="row", flex="")
+                  p 退出
 
-    #layout.pure-g
+    #terminal(ng-cloak,ng-show="is_show_terminal", drag, resizable, r-directions="['bottom', 'right']",r-width="600", r-height="400",ng-style="termStyle", style="position: absolute; width: 600px; height: 400px;z-index:140;")
+      #terminal_handler(drag-handle,style="position: relative; width: 100%; height: 4%;")
+        p(ng-click="close_terminal()",class="close_terminal_btn") X-关闭
+      #go_container(style="position: relative; width: 100%; height: 96%;")
+        #gateone
+      md-button.md-raised(ng-click="exec()") 执行选中
+      md-button.md-raised(ng-click="showTermHelp()") 帮助
+      md-button.md-raised(ng-click="reconnect()") 重连
+
+    #layout.pure-g.page(ng-view='',class="{{ page_class }}")
       .pure-u-1.pure-u-md-3-4: .content_container
         block content
       .pure-u-1-4: #sidebar
@@ -54,5 +90,5 @@ html(lang='#{config.language}')
       .pure-u-1.pure-u-md-3-4
         != partial('_partial/footer.jade')
 
-    include _partial/totop
     include _partial/after_footer
+    include _partial/totop
